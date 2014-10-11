@@ -7,11 +7,14 @@ public class CameraMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		target = GameObject.Find ("Blue Triangle").transform;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = target.position + new Vector3 (0, 0, -10);
+		if (GameObject.Find ("Blue Triangle(Clone)") != null) {
+			target = GameObject.Find ("Blue Triangle(Clone)").transform;
+			transform.position = target.position + new Vector3 (0, 0, -10);
+		}
 	}
 }

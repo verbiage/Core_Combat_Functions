@@ -10,7 +10,7 @@ public class Status : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -20,18 +20,22 @@ public class Status : MonoBehaviour {
 		}
 		if (health>100){
 			health=100;
+		}else if (health<100){
+			health += Time.deltaTime * healthRegen;
 		}
-		health += Time.deltaTime * healthRegen;
 	}
 
-	void OnCollisionStay2D (Collision2D Enemyhit){
-		if (gameObject.tag == "Blue Triangle" && Enemyhit.gameObject.tag == "Red Triangle") {
-			//health -= Enemyhit.gameObject.GetComponent<Status>().damage1*defense1;
-			health -= 5;
+	void OnCollisionStay2D (Collision2D collider){
+		if (gameObject.tag == "Blue Triangle" && collider.gameObject.tag == "Red Triangle") {
+			health -= collider.gameObject.GetComponent<Status>().damage1*defense1/300;
+			Debug.Log (collider.gameObject.GetComponent<Status>().damage1/3);
+			Debug.Log (defense1/100);
+			Debug.Log (collider.gameObject.GetComponent<Status>().damage1*defense1/300);
+			//health -= 5;
 		}
-		if (gameObject.tag == "Red Triangle" && Enemyhit.gameObject.tag == "Blue Triangle") {
-			//health -= Enemyhit.gameObject.GetComponent<Status>().damage1*defense1;
-			health -= 5;
+		if (gameObject.tag == "Red Triangle" && collider.gameObject.tag == "Blue Triangle") {
+			health -= collider.gameObject.GetComponent<Status>().damage1*defense1/300;
+			//health -= 5;
 		}
 	}
 }

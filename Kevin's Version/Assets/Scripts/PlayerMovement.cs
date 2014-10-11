@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
+	//public float dashCD=4;
 
 	// Use this for initialization
 	void Start () {
